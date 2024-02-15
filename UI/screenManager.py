@@ -33,8 +33,8 @@ class ScreenManager(object):
             self.game.draw(drawSurf)
         
             if self.state == "paused":
+                self.blackscreen.draw(drawSurf)
                 self.pausedText.draw(drawSurf)
-                self.blackscreen.draw(drawSurf)  # fill the entire screen with black
 
             
         
