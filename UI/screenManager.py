@@ -15,6 +15,7 @@ class ScreenManager(object):
         size = self.pausedText.getSize()
         midpoint = RESOLUTION // 2 - size
         self.pausedText.position = vec(*midpoint)
+        self.blackscreen = EventMenu("black.png", fontName="default8")
         
         self.mainMenu = EventMenu("background.png", fontName="default8")
         self.mainMenu.addOption("start", "Press 1 to start Game",
@@ -33,6 +34,9 @@ class ScreenManager(object):
         
             if self.state == "paused":
                 self.pausedText.draw(drawSurf)
+                self.blackscreen.draw(drawSurf)  # fill the entire screen with black
+
+            
         
         elif self.state == "mainMenu":
             self.mainMenu.draw(drawSurf)

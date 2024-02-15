@@ -1,5 +1,6 @@
 from . import AbstractGameFSM
 from utils import magnitude, EPSILON, SpriteManager
+import pygame
 
 from statemachine import State
 
@@ -40,3 +41,7 @@ class WalkingFSM(AnimateFSM):
     
     def noVelocity(self):
         return not self.hasVelocity()
+    
+    
+
+    
