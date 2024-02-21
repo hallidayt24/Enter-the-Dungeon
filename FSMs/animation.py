@@ -34,10 +34,10 @@ class WalkingFSM(AnimateFSM):
         if self.hasVelocity() and self != "moving":
             self.move()
         elif not self.hasVelocity() and self != "standing":
-            self.stop()
-    
+            self.stop()   
     def hasVelocity(self):
         return magnitude(self.obj.velocity) > EPSILON
+    
     
     def noVelocity(self):
         return not self.hasVelocity()

@@ -37,13 +37,13 @@ class SpriteManager(object):
       }
       
       # A default sprite size
-      _DEFAULT_SPRITE = (17,26)
+      _DEFAULT_SPRITE = (20,25)
       
       # A list of images that require to be loaded with transparency
       _TRANSPARENCY = []
       
       # A list of images that require to be loaded with a color key
-      _COLOR_KEY = ["waddleDee.png", "pilot.png", "arrow.png"]
+      _COLOR_KEY = ["waddleDee.png", "pilot1.png", "arrow.png"]
       
       def __init__(self):
          # Stores the surfaces indexed based on file name

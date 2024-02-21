@@ -1,7 +1,7 @@
 from .mobile import Mobile
 from FSMs import WalkingFSM, AccelerationFSM
 from utils import vec, RESOLUTION
-
+from gameObjects.drawable import Drawable
 from pygame.locals import *
 
 import pygame
@@ -10,15 +10,17 @@ import numpy as np
 
 class Pilot(Mobile):
    def __init__(self, position):
-      super().__init__(position, "pilot.png")
-        
+      super().__init__(position, "pilot1.png")
+      
+      self.direction = "right"
+      self.rect = self.image.get_rect()
       # Animation variables specific to Pilot
-      self.framesPerSecond = 2 
-      self.nFrames = 2
+      self.framesPerSecond = 6.67
+      self.nFrames = 6
       
       self.nFramesList = {
-         "moving"   : 4,
-         "standing" : 2
+         "moving"   : 6,
+         "standing" : 6
       }
       
       self.rowList = {
@@ -27,13 +29,15 @@ class Pilot(Mobile):
       }
       
       self.framesPerSecondList = {
-         "moving"   : 8,
-         "standing" : 2
+         "moving"   : 6.67,
+         "standing" : 6.67
       }
             
       self.FSManimated = WalkingFSM(self)
       self.LR = AccelerationFSM(self, axis=0)
       self.UD = AccelerationFSM(self, axis=1)
+      
+   
       
       
    def handleEvent(self, event):
@@ -46,10 +50,14 @@ class Pilot(Mobile):
             
          elif event.key == K_LEFT:
             self.LR.decrease()
+            self.direction = "left"
+            
             
          elif event.key == K_RIGHT:
             self.LR.increase()
+            self.direction = "right"
             
+
       elif event.type == KEYUP:
          if event.key == K_UP:
             self.UD.stop_decrease()
@@ -68,10 +76,18 @@ class Pilot(Mobile):
       self.LR.update(seconds)
       self.UD.update(seconds)
       
+      
       super().update(seconds)
 
    def updateMovement(self):
       pass
    
+   def draw(self, surface):
+      if self.direction == "left":
+         flipped_image = pygame.transform.flip(self.image, True, False)
+         self.rect = flipped_image.get_rect()
+         surface.blit(flipped_image, self.rect)
+      else:  # direction is "right"
+         self.rect = self.image.get_rect()
+         surface.blit(self.image, self.rect)
    
-  
