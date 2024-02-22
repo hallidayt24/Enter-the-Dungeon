@@ -12,8 +12,8 @@ class Pilot(Mobile):
    def __init__(self, position):
       super().__init__(position, "pilot1.png")
       
-      self.direction = "right"
-      self.rect = self.image.get_rect()
+      
+   
       # Animation variables specific to Pilot
       self.framesPerSecond = 6.67
       self.nFrames = 6
@@ -49,13 +49,13 @@ class Pilot(Mobile):
             self.UD.increase()
             
          elif event.key == K_LEFT:
+            self.flipImage[0] = True
             self.LR.decrease()
-            self.direction = "left"
-            
             
          elif event.key == K_RIGHT:
+            self.flipImage[0] = False
             self.LR.increase()
-            self.direction = "right"
+            
             
 
       elif event.type == KEYUP:
@@ -71,23 +71,15 @@ class Pilot(Mobile):
             
          elif event.key == K_RIGHT:
             self.LR.stop_increase()
-   
+      
    def update(self, seconds): 
       self.LR.update(seconds)
       self.UD.update(seconds)
+      
       
       
       super().update(seconds)
 
    def updateMovement(self):
       pass
-   
-   def draw(self, surface):
-      if self.direction == "left":
-         flipped_image = pygame.transform.flip(self.image, True, False)
-         self.rect = flipped_image.get_rect()
-         surface.blit(flipped_image, self.rect)
-      else:  # direction is "right"
-         self.rect = self.image.get_rect()
-         surface.blit(self.image, self.rect)
    

@@ -43,21 +43,15 @@ class AccelerationFSM(MovementFSM):
         self.accel = 200
         self.flipped = False
         self.original_flipped = False
-        # self.flip_x = False
+        
         
         super().__init__(obj)
 
     def update(self, seconds=0):
-        
-        if self.obj.velocity[self.axis] < 0:
-            if self.flipped != self.original_flipped:
-                print("Flipping")
-                self.obj.image = pygame.transform.flip(self.obj.image, True, False)
-                self.flipped = not self.flipped
-        elif self.obj.velocity[self.axis] > 0:
-            if self.flipped == self.original_flipped :
-                self.obj.image = pygame.transform.flip(self.obj.image, True, False)
-                self.flipped = not self.flipped
+
+            
+
+
         if self.obj.position[self.axis] < 0:
             self.stop_decrease()
             self.obj.velocity[self.axis] = max(0, self.obj.velocity[0])
@@ -91,15 +85,6 @@ class AccelerationFSM(MovementFSM):
             else:
                 self.obj.velocity[self.axis] = 0
 
-        # if self ==  "negative":  # Moving left
-        #     print("Moving left")
-        #     self.flip_x = True
-        # else:
-        #     self.flip_x = False
-
-        # if self.flip_x != self.flipped:
-        #     self.obj.image = pygame.transform.flip(self.obj.image, self.flip_x, False)
-        #     self.flipped = self.flip_x
-
+    
         
         super().update(seconds)

@@ -34,12 +34,13 @@ class Drawable(object):
     def __init__(self, position=vec(0,0), fileName="", offset=None):
         if fileName != "":
             self.image = SpriteManager.getInstance().getSprite(fileName, offset)
-        
+        self.flipImage = [False, False]
         self.position  = vec(*position)
         self.imageName = fileName
     
     def draw(self, drawSurface):
-        drawSurface.blit(self.image, list(map(int, self.position - Drawable.CAMERA_OFFSET)))
+        blitImage = pygame.transform.flip(self.image, *self.flipImage)
+        drawSurface.blit(blitImage, list(map(int, self.position - Drawable.CAMERA_OFFSET)))
             
     def getSize(self):
         return vec(*self.image.get_size())
