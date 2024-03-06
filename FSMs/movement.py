@@ -48,7 +48,7 @@ class AccelerationFSM(MovementFSM):
         super().__init__(obj)
 
     def update(self, seconds=0):
-
+ 
             
 
 

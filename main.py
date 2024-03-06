@@ -2,6 +2,7 @@ import pygame
 from UI import ScreenManager
 from utils import RESOLUTION, UPSCALED
 
+
 def main():
     #Initialize the module
     pygame.init()
@@ -25,8 +26,10 @@ def main():
                                list(map(int, UPSCALED)),
                                screen)
      
+     
         pygame.display.flip()
         gameClock = pygame.time.Clock()
+        
         
         # event handling, gets all event from the eventqueue
         for event in pygame.event.get():
@@ -43,9 +46,11 @@ def main():
         gameClock.tick(60)
         seconds = gameClock.get_time() / 1000
         gameEngine.update(seconds)
-     
+
+      
+        
     pygame.quit()
 
 
 if __name__ == '__main__':
-    main()
+    main()  
