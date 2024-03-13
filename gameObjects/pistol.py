@@ -7,7 +7,7 @@ from pygame.locals import *
 import pygame
 import numpy as np
 
-worldSize = vec(*RESOLUTION)
+
 
 class Pistol(Mobile):
     def __init__(self, position):

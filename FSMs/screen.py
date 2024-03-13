@@ -19,4 +19,5 @@ class ScreenManagerFSM(AbstractGameFSM):
     
     def on_enter_game(self):
         self.obj.game.pilot.updateMovement()
+        #self.obj.game.pilot.spawn('room1.png')
     
